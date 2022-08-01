@@ -161,7 +161,7 @@ class BBRSINaiveStrategy(IStrategy):
         dataframe.loc[
             (
                 (dataframe['rsi'] > 70) &  # Signal: RSI crosses above 70
-                (dataframe['close'] > dataframe['bb_midland']) # Guard: tema is falling
+                (dataframe['close'] > dataframe['bb_upperband']) # Guard: tema is falling
             ),
             'sell'] = 1
 
