@@ -14,3 +14,4 @@ docker-compose run --rm freqtrade backtesting --config user_data/learndatasci-co
 2. Set up Binance API with trading bot
 3. Invest $20?
 4. Profit!
+5. Generate better strategy, invest in normal stocks?
