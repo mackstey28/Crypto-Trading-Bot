@@ -1,0 +1,29 @@
+{
+  "strategy_name": "RsiStrat",
+  "params": {
+    "trailing": {
+      "trailing_stop": false,
+      "trailing_stop_positive": null,
+      "trailing_stop_positive_offset": 0.0,
+      "trailing_only_offset_is_reached": false
+    },
+    "buy": {
+      "buy_rsi": 27
+    },
+    "sell": {
+      "sell_rsi": 90
+    },
+    "protection": {},
+    "roi": {
+      "0": 0.7470000000000001,
+      "11065": 0.21100000000000002,
+      "21533": 0.077,
+      "37103": 0
+    },
+    "stoploss": {
+      "stoploss": -0.261
+    }
+  },
+  "ft_stratparam_v": 1,
+  "export_time": "2022-08-01 06:08:50.563600+00:00"
+}

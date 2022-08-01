@@ -17,7 +17,7 @@ import freqtrade.vendor.qtpylib.indicators as qtpylib
 
 
 # This class is a sample. Feel free to customize it.
-class RsiStrat(IStrategy):
+class SampleStrategy(IStrategy):
     """
     This is a sample strategy to inspire you.
     More information in https://www.freqtrade.io/en/latest/strategy-customization/
@@ -40,24 +40,26 @@ class RsiStrat(IStrategy):
 
     # Can this strategy go short?
     can_short: bool = False
-
+    
     # Minimal ROI designed for the strategy.
     # This attribute will be overridden if the config file contains "minimal_roi".
     minimal_roi = {
-        "60": 0.01,
-        "30": 0.02,
-        "0": 0.04
+        "0": 0.747,
+        "11065": 0.211,
+        "21533": 0.077,
+        "37103": 0
     }
 
     # Optimal stoploss designed for the strategy.
     # This attribute will be overridden if the config file contains "stoploss".
-    stoploss = -0.10
+    stoploss = -0.261
 
     # Trailing stoploss
-    trailing_stop = False
-    # trailing_only_offset_is_reached = False
-    # trailing_stop_positive = 0.01
-    # trailing_stop_positive_offset = 0.0  # Disabled / not configured
+    # Trailing stop:
+    trailing_stop = False  # value loaded from strategy
+    trailing_stop_positive = None  # value loaded from strategy
+    trailing_stop_positive_offset = 0.0  # value loaded from strategy
+    trailing_only_offset_is_reached = False  # value loaded from strategy
 
     # Optimal timeframe for the strategy.
     timeframe = '5m'
@@ -142,6 +144,8 @@ class RsiStrat(IStrategy):
 
         # RSI
         dataframe['RSI'] = ta.RSI(dataframe)
+        dataframe['buy_rsi'] = 27
+        dataframe['sell_rsi'] = 90
 
         # # Inverse Fisher transform on RSI: values [-1.0, 1.0] (https://goo.gl/2JGGoy)
         # rsi = 0.1 * (dataframe['rsi'] - 50)
@@ -308,24 +312,20 @@ class RsiStrat(IStrategy):
         return dataframe
 
     def populate_entry_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        conditions = []
-        conditions.append((dataframe['RSI'] < self.buy_rsi.value ))
-
-        if conditions:
-            dataframe.loc[
-                reduce(lambda x, y: x & y, conditions),
-                'buy'] = 1
-
+        dataframe.loc[
+            (
+                (dataframe['RSI'] < dataframe['buy_rsi'])
+            ),
+            'buy'] = 1
 
         return dataframe
 
     def populate_exit_trend(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
-        conditions = []
-        conditions.append((dataframe['RSI'] > self.sell_rsi.value ))
-
-        if conditions:
-            dataframe.loc[
-                reduce(lambda x, y: x & y, conditions),
-                'sell'] = 1
+        dataframe.loc[
+            (
+                (dataframe['RSI'] > dataframe['sell_rsi'])
+            ),
+            'buy'] = 1
 
         return dataframe
+
