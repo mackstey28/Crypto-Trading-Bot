@@ -44,17 +44,16 @@ class SampleStrategy(IStrategy):
     # Minimal ROI designed for the strategy.
     # This attribute will be overridden if the config file contains "minimal_roi".
     minimal_roi = {
-        "0": 0.747, # Exit any time if profit is 74.7% or greater
-        "11065": 0.211, # Exit after 11065 minutes if profit is 21.1% or greater, 7.7 days
-        "21533": 0.077, # Exit after 21533 minutes if profit is 7.7% or greater, 14.9 days
-        "37103": 0 # Exit after 37103 minutes if it is possible to break even, 25.7 days
+        "0": 0.715,
+        "5428": 0.144,
+        "22199": 0.104,
+        "38305": 0
     }
 
     # Optimal stoploss designed for the strategy.
     # This attribute will be overridden if the config file contains "stoploss".
-    stoploss = -0.261
+    stoploss = -0.312
 
-    # Trailing stoploss
     # Trailing stop:
     trailing_stop = False  # value loaded from strategy
     trailing_stop_positive = None  # value loaded from strategy
@@ -145,7 +144,7 @@ class SampleStrategy(IStrategy):
         # RSI
         dataframe['RSI'] = ta.RSI(dataframe)
         dataframe['buy_rsi'] = 27
-        dataframe['sell_rsi'] = 90
+        dataframe['sell_rsi'] = 84
 
         # # Inverse Fisher transform on RSI: values [-1.0, 1.0] (https://goo.gl/2JGGoy)
         # rsi = 0.1 * (dataframe['rsi'] - 50)
