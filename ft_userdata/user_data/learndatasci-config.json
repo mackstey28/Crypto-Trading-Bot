@@ -32,9 +32,9 @@
         "order_book_top": 1
     },
     "exchange": {
-        "name": "binance",
-        "key": "",
-        "secret": "",
+        "name": "tradingbot1",
+        "key": "abc",
+        "secret": "abc",
         "ccxt_config": {},
         "ccxt_async_config": {},
         "pair_whitelist": [
