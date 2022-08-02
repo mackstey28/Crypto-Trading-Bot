@@ -10,7 +10,7 @@ cd into `Crypto-Trading-Bot\ft_userdata\user_data`
 `docker-compose run --rm freqtrade hyperopt --config user_data/learndatasci-config.json --strategy RsiStrat --epochs 50 --spaces default --hyperopt-loss SharpeHyperOptLoss`
 
 ### Run Backtest:
-`docker-compose run --rm freqtrade backtesting --config user_data/learndatasci-config.json --strategy SampleStrategy`
+`docker-compose run --rm freqtrade trade --config user_data/learndatasci-config.json --strategy SampleStrategy`
 
 ### TODO LIST:
 1. Set up Binance account(s): https://www.freqtrade.io/en/stable/configuration/#switch-to-production-mode
